@@ -40,3 +40,14 @@ CollectionBuilder documentation and general web content is licensed [Creative Co
 This license does *NOT* include any objects or images used in digital collections, which may have individually applied licenses described by a "rights" field.
 CollectionBuilder code is licensed [MIT](https://github.com/CollectionBuilder/collectionbuilder-csv/blob/master/LICENSE). 
 This license does not include external dependencies included in the `assets/lib` directory, which are covered by their individual licenses.
+
+## Building for file:// viewing
+
+A Rake task `build_relative` has been added to help make the generated site viewable via file:// without a webserver. It runs `jekyll build` and then a post-processing script to convert root-absolute links to relative paths.
+
+Usage:
+
+    bundle install
+    bundle exec rake build_relative
+
+This runs `scripts/make_relative_links.rb` on `_site` to rewrite leading "/" links in HTML, JS, and some data files. Note: sitemap and some metadata files may still contain absolute URLs.
